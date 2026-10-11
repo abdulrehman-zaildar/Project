@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<main class="auth-view" id="auth-view" hidden>
+  <form class="auth-card" id="auth-form" novalidate>
+    <h1>Smart Notes</h1>
+    <p>Sign in to see your private notes on any device.</p>
+    <div class="tabs" role="group" aria-label="Sign in or create an account">
+      <button type="button" id="tab-in" aria-pressed="true">Sign in</button>
+      <button type="button" id="tab-up" aria-pressed="false">Create account</button>
+    </div>
+    <label class="field" for="a-email">Email
+      <input id="a-email" type="email" autocomplete="email" placeholder="you@example.com">
+      <span class="err" id="e-email" role="alert"></span>
+    </label>
+    <label class="field" for="a-pass">Password
+      <input id="a-pass" type="password" autocomplete="current-password" placeholder="Your password">
+      <span class="err" id="e-pass" role="alert"></span>
+    </label>
+    <div class="msg err" id="a-err" role="alert" hidden></div>
+    <div class="msg info" id="a-info" role="status" hidden></div>
+    <button class="primary" id="a-btn" type="submit">Sign in</button>
+  </form>
+</main>
+
+<div class="app" id="app-shell" hidden>
+  <header class="topbar">
+    <h1>Smart Notes</h1>
+    <div class="who">
+      <span class="hint" id="mode-hint"></span>
+      <span class="email" id="who"></span>
+      <button type="button" id="signout" hidden>Sign out</button>
+    </div>
+  </header>
+
+  <div class="layout" id="layout">
+    <section class="list-pane" aria-label="Your notes">
+      <div class="tools">
+        <button type="button" class="primary" id="new-btn">New note</button>
+        <input id="search" type="search" placeholder="Search notes" aria-label="Search notes">
+        <div class="tabs" id="status-tabs" role="group" aria-label="Filter by status"></div>
+        <div class="chips" id="tag-chips" aria-label="Filter by tag"></div>
+      </div>
+      <ul id="note-list" class="note-list"></ul>
+      <div class="list-foot">
+        <button type="button" class="ghost" id="reset-btn">Reset sample data</button>
+      </div>
+    </section>
+
+    <section class="editor-pane" id="editor" aria-label="Note editor">
+      <div class="blank" id="editor-blank">
+        <strong>Pick a note or start a new one</strong>
+        <span>Notes move through Draft, Active and Archived as you work on them.</span>
+      </div>
+
+      <form id="editor-form" hidden novalidate>
+        <button type="button" class="ghost back" id="back-btn">&larr; All notes</button>
+
+        <div class="flow" id="flow" hidden>
+          <span class="badge" id="status-badge"></span>
+          <div class="flow-actions" id="flow-actions"></div>
+        </div>
+
+        <label class="field" for="f-title">Title
+          <input id="f-title" maxlength="140" autocomplete="off" placeholder="What is this note about?">
+          <span class="err" id="e-title" role="alert"></span>
+        </label>
+
+        <label class="field" for="f-body">Note
+          <textarea id="f-body" rows="10" placeholder="Write your note here"></textarea>
+          <span class="err" id="e-body" role="alert"></span>
+        </label>
+
+        <label class="field" for="f-tags">Tags (separate with commas)
+          <input id="f-tags" autocomplete="off" placeholder="study, project">
+          <span class="err" id="e-tags" role="alert"></span>
+        </label>
+        <div class="suggest" id="suggest" hidden></div>
+
+        <div class="meta" id="meta"></div>
+
+        <div class="actions">
+          <button type="submit" class="primary" id="save-btn">Save note</button>
+          <button type="button" id="pin-btn" hidden>Pin</button>
+          <span class="status" id="status" role="status"></span>
+          <span class="spacer"></span>
+          <button type="button" class="danger" id="del-btn" hidden>Delete</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "smart-notes",
+  "version": "1.1.0",
+  "description": "Smart Notes with sample data and a Supabase database",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test",
+    "config": "node scripts/write-config.js",
+    "build": "node scripts/build.js",
+    "verify": "node scripts/verify.js"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "2.45.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

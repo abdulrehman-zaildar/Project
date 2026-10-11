@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+src/config.js
+dist/
+node_modules/
